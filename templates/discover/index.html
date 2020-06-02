@@ -14,4 +14,15 @@
   {% else %}
     <p>No polls available</p>
   {% endif %}
+  <div class="card mb-3">
+    <div class="card-body">
+      <form>
+        <div class="form-group">
+          <label for="username">Spotify Username</label>
+          <input type="text" class="form-control" id="username" placeholder="Username">
+        </div>
+        <a href="{% url 'discover:artists' username %}" type="submit" class="btn btn-success btn-sm">Submit</a>
+      </form>
+    </div>
+  </div>
 {% endblock %}

@@ -1,9 +1,9 @@
-from django.template import loader
-from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
 from .models import Question, Choice
+from discover import user
 
 
 # Get questions and display them
@@ -47,3 +47,11 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('discover:results', args=(question.id,)))
+
+
+# Load user top artists
+def artists(request, username):
+    top_artists = user.authorize(username)
+    return render(request, 'discover/artists.html', {'top_artists': top_artists})
+
+
